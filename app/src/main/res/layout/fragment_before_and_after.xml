@@ -6,17 +6,207 @@
     android:layout_height="match_parent"
     tools:context=".ExerciseDiary.ui.BeforeAndAfter.BeforeAndAfterFragment">
 
-    <TextView
-        android:id="@+id/text_before_and_after"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:id="@+id/table_item"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/table_empty_character"
+                android:layout_width="match_parent"
+                android:layout_weight="2"
+                android:text="@string/photo" />
+            <TextView
+                android:id="@+id/table_name_weight"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="@string/weight" />
+            <TextView
+                android:id="@+id/table_name_chest"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="@string/chest" />
+            <TextView
+                android:id="@+id/table_name_waist"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="@string/waist" />
+            <TextView
+                android:id="@+id/table_name_hip"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="@string/hip" />
+            <TextView
+                android:id="@+id/table_name_fat"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="@string/fat" />
+            <TextView
+                android:id="@+id/table_name_muscle"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="@string/muscle" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/talbe_before_item"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/before_photo"
+                android:layout_width="match_parent"
+                android:layout_weight="2"
+                android:contentDescription="@string/todo"
+                tools:src="@tools:sample/avatars" />
+            <EditText
+                android:id="@+id/table_value_before_weight"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="@string/before_weight"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal" />
+            <EditText
+                android:id="@+id/table_value_before_chest"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="@string/before_chest"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal" />
+            <EditText
+                android:id="@+id/table_value_before_waist"
+                android:layout_width="match_parent"
+                android:text="@string/before_waist"
+                android:layout_weight="1"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"/>
+            <EditText
+                android:id="@+id/table_value_before_hip"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="@string/before_hip"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal" />
+            <EditText
+                android:id="@+id/table_value_before_fat"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="@string/before_fat"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal" />
+            <EditText
+                android:id="@+id/table_value_before_muscle"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="@string/before_muscle"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/table_to_item"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/table_character0"
+                android:layout_width="match_parent"
+                android:layout_weight="2"
+                android:text="@string/to" />
+            <TextView
+                android:id="@+id/table_character1"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="@string/to" />
+            <TextView
+                android:id="@+id/table_character2"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="@string/to" />
+            <TextView
+                android:id="@+id/table_character3"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="@string/to" />
+            <TextView
+                android:id="@+id/table_character4"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="@string/to" />
+            <TextView
+                android:id="@+id/table_character5"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="@string/to" />
+            <TextView
+                android:id="@+id/table_character6"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="@string/to" />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/table_after_item"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/after_photo"
+                android:layout_width="match_parent"
+                android:layout_weight="2"
+                android:contentDescription="@string/todo"
+                tools:src="@tools:sample/avatars"
+                 />
+            <TextView
+                android:id="@+id/table_value_after_weight"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="@string/afterweight"
+                 />
+            <TextView
+                android:id="@+id/table_value_after_chest"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="@string/afterchest"
+                 />
+            <TextView
+                android:id="@+id/table_value_after_waist"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="@string/afterwaist"
+                 />
+            <TextView
+                android:id="@+id/table_value_after_hip"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="@string/afterhip"
+                />
+            <TextView
+                android:id="@+id/table_value_after_fat"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="@string/afterfat"
+                 />
+            <TextView
+                android:id="@+id/table_value_after_muscle"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="@string/string_afterwmusle"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
