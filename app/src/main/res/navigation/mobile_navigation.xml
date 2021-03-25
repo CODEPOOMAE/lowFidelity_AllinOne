@@ -27,6 +27,6 @@
         android:id="@+id/navigation_setting"
         android:name="coms.example.allinonelowfiproject.ExerciseDiary.ui.Setting.ExerciseSettingFragment"
         android:label="ExerciseSetting"
-        tools:layout="ragment_exercise_setting" />
+        tools:layout="@layout/fragment_exercise_setting" />
 
 </navigation>

@@ -23,7 +23,7 @@ public class ExerciseSettingFragment extends Fragment {
         exerciseSettingViewModel =
                 new ViewModelProvider(this).get(ExerciseSettingViewModel.class);
         View root = inflater.inflate(R.layout.fragment_exercise_setting, container, false);
-        
+
         final TextView textView = root.findViewById(R.id.text_exercise_setting);
         exerciseSettingViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
