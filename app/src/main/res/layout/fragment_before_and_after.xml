@@ -66,7 +66,6 @@
                 android:id="@+id/before_photo"
                 android:layout_width="match_parent"
                 android:layout_weight="2"
-                android:contentDescription="@string/todo"
                 tools:src="@tools:sample/avatars" />
             <EditText
                 android:id="@+id/table_value_before_weight"
@@ -121,38 +120,31 @@
             <TextView
                 android:id="@+id/table_character0"
                 android:layout_width="match_parent"
-                android:layout_weight="2"
-                android:text="@string/to" />
+                android:layout_weight="2" />
             <TextView
                 android:id="@+id/table_character1"
                 android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:text="@string/to" />
+                android:layout_weight="1" />
             <TextView
                 android:id="@+id/table_character2"
                 android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:text="@string/to" />
+                android:layout_weight="1"/>
             <TextView
                 android:id="@+id/table_character3"
                 android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:text="@string/to" />
+                android:layout_weight="1" />
             <TextView
                 android:id="@+id/table_character4"
                 android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:text="@string/to" />
+                android:layout_weight="1" />
             <TextView
                 android:id="@+id/table_character5"
                 android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:text="@string/to" />
+                android:layout_weight="1" />
             <TextView
                 android:id="@+id/table_character6"
                 android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:text="@string/to" />
+                android:layout_weight="1" />
 
 
 

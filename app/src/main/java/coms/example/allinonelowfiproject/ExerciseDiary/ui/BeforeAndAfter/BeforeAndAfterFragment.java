@@ -2,7 +2,6 @@ package coms.example.allinonelowfiproject.ExerciseDiary.ui.BeforeAndAfter;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -17,13 +16,11 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import coms.example.allinonelowfiproject.R;
-import coms.example.allinonelowfiproject.support.PermissionSupport;
 
 import static android.app.Activity.RESULT_OK;
 
 public class BeforeAndAfterFragment extends Fragment {
 
-    private PermissionSupport permission;
     private BeforeAndAfterViewModel beforeAndAfterViewModel;
     private ImageView beforeImage;
     private ImageView afterImage;
@@ -35,7 +32,7 @@ public class BeforeAndAfterFragment extends Fragment {
                 new ViewModelProvider(this).get(BeforeAndAfterViewModel.class);
         View root = inflater.inflate(R.layout.fragment_before_and_after, container, false);
 
-        permissionCheck();
+        // permission check!!
 
         beforeImage=(ImageView)root.findViewById(R.id.before_photo);
         beforeImage.setOnClickListener(new View.OnClickListener(){
@@ -56,14 +53,7 @@ public class BeforeAndAfterFragment extends Fragment {
         return root;
     }
 
-    private void permissionCheck() {
-        if(Build.VERSION.SDK_INT>=23){
-            permission=new PermissionSupport(this,this);
-            if(!permission.checkPermission()){
-                permission.requestPermission();
-            }
-        }
-    }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
