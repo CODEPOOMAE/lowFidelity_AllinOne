@@ -19,5 +19,29 @@
     <string name="title_notifications">Notifications</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="string_afterwmusle">string_afterwmusle</string>
+    <string name="afterfat">afterfat</string>
+    <string name="afterhip">afterhip</string>
+    <string name="afterwaist">afterwaist</string>
+    <string name="photo">photo</string>
+    <string name="afterchest">afterchest</string>
+    <string name="afterweight">afterweight</string>
+    <string name="todo">todo</string>
+    <string name="weight">weight</string>
+    <string name="before_muscle">before_muscle</string>
+    <string name="chest">chest</string>
+    <string name="to">to</string>
+    <string name="before_hip">before_hip</string>
+    <string name="efore_waist">efore_waist</string>
+    <string name="to">to</string>
+    <string name="to">to</string>
+    <string name="before_waist">before_waist</string>
+    <string name="before_fat">before_fat</string>
+    <string name="before_chest">before_chest</string>
+    <string name="before_weight">before_weight</string>
+    <string name="todo">todo</string>
+    <string name="waist">waist</string>
+    <string name="muscle">muscle</string>
+    <string name="fat">fat</string>
+    <string name="hip">hip</string>
 </resources>

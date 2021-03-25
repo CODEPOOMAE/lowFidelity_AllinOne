@@ -76,4 +76,5 @@ dependencies {
     implementation 'com.google.android.gms:play-services-basement:17.4.0'
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.3.50'
     implementation 'com.jakewharton.threetenabp:threetenabp:1.1.1'
+    implementation "gun0912.ted:tedpermission:2.1.0"
 }
