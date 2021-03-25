@@ -41,4 +41,6 @@
     <string name="muscle">muscle</string>
     <string name="fat">fat</string>
     <string name="hip">hip</string>
+    <string name="startday">StartDay</string>
+
 </resources>

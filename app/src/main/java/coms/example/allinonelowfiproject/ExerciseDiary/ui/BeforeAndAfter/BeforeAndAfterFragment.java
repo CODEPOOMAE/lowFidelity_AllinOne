@@ -34,9 +34,12 @@ public class BeforeAndAfterFragment extends Fragment {
 
         // permission check!!
 
+
+
         beforeImage=(ImageView)root.findViewById(R.id.before_photo);
         beforeImage.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
+
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
                 startActivityForResult(intent,GET_GALLERY_IMAGE);
@@ -52,7 +55,6 @@ public class BeforeAndAfterFragment extends Fragment {
         });
         return root;
     }
-
 
 
     @Override
