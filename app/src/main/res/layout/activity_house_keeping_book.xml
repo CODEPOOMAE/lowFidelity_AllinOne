@@ -35,7 +35,7 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="59dp"
-            android:text="맥북"
+            android:text="                                                              "
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="145dp"
             tools:layout_editor_absoluteY="16dp" />
@@ -119,7 +119,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:text="월간" />
-
     </FrameLayout>
 
     <FrameLayout
@@ -141,5 +140,13 @@
 
     </FrameLayout>
 
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/piechart"
+        android:layout_width="match_parent"
+        android:layout_height="122dp">
+
+    </com.github.mikephil.charting.charts.PieChart>
+
 
 </LinearLayout>
+
