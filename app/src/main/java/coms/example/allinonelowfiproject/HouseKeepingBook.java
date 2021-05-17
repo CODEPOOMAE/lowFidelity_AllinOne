@@ -3,6 +3,7 @@ package coms.example.allinonelowfiproject;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.utils.Easing;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -38,128 +39,52 @@ import coms.example.allinonelowfiproject.mainCalendar.MaterialCalendarView;
 import coms.example.allinonelowfiproject.mainCalendar.OnDateSelectedListener;
 
 public class HouseKeepingBook extends AppCompatActivity {
-    MaterialCalendarView materialCalendarView;
-    PieChart pieChart;
+    Button btn1, btn2, btn3;
 
-    private final OneDayDecorator oneDayDecorator = new OneDayDecorator();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_house_keeping_book);
 
-        materialCalendarView = (MaterialCalendarView)findViewById(R.id.CalenderForHKB);
+        /*버튼생성*/
+        btn1 = (Button)findViewById(R.id.btn_calendar);
+        btn2 = (Button)findViewById(R.id.btn_expense);
+        btn3 = (Button)findViewById(R.id.btn_statistics);
 
-        Button button1 = (Button)findViewById(R.id.button1);
-        Button button2 = (Button)findViewById(R.id.button2);
-        Button button3 = (Button)findViewById(R.id.button3);
-        //Button calendarAddButton = (Button)findViewById(R.id.button4);
-        ImageButton imageButton = (ImageButton)findViewById(R.id.imageButton2);
-
-        //MaterialCalendarView ClanV = (MaterialCalendarView) findViewById(R.id.CalenderForHKB);
-        materialCalendarView.setVisibility(View.INVISIBLE);
-        FrameLayout FLOut = (FrameLayout) findViewById(R.id.FrameLayout1);
-        FLOut.setVisibility(View.INVISIBLE);
-
-        button1.setOnClickListener(new View.OnClickListener() {
+        btn1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                materialCalendarView.setVisibility(View.VISIBLE);
-                FLOut.setVisibility(View.INVISIBLE);
-            }
-        });
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                materialCalendarView.setVisibility(View.INVISIBLE);
-                FLOut.setVisibility(View.VISIBLE);
-            }
-        });
-        /*button3.setOnClickListener(new View.OnClickListener() { //통계를 위한 pieChart <-- 오류로 인해 잠시 주석처리
-            @Override
-            public void onClick(View v) {
-                ClanV.setVisibility(View.INVISIBLE);
-                FLOut.setVisibility(View.INVISIBLE);
-                pieChart = (PieChart)findViewById(R.id.piechart);
-
-                pieChart.setUsePercentValues(true);
-                pieChart.getDescription().setEnabled(false);
-                pieChart.setExtraOffsets(5,10,5,5);
-
-                pieChart.setDragDecelerationFrictionCoef(0.95f);
-                pieChart.setRotationEnabled(false); //차트 돌아감
-                pieChart.setDrawHoleEnabled(false);
-                pieChart.setHoleRadius(25f);
-                pieChart.setCenterText("지출?");
-                pieChart.setTransparentCircleRadius(61f);
-
-                Description description = new Description();
-                description.setText("수입 내역"); //라벨
-                description.setTextSize(15);
-                pieChart.setDescription(description);
-
-                //pieChart.animateY(1000, Easing.EasingOption.EaseInOutCubic); //애니메이션
-
-                ArrayList<PieEntry> yValues = new ArrayList<PieEntry>();
-                yValues.add(new PieEntry(34f,"용돈"));
-                yValues.add(new PieEntry(23f,"주식"));
-                yValues.add(new PieEntry(14f,"코인"));
-
-                PieDataSet dataSet = new PieDataSet(yValues,"수입 내역");
-                dataSet.setSliceSpace(3f);
-                dataSet.setSelectionShift(5f);
-                dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
-
-                PieData data = new PieData((dataSet));
-                data.setValueTextSize(10f);
-                data.setValueTextColor(Color.YELLOW);
-
-                pieChart.setData(data);
-            }
-        });*/
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
+            public void onClick(View view) {
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                Fragment_Caledar fragmentCaledar = new Fragment_Caledar();
+                transaction.replace(R.id.frame,fragmentCaledar);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
 
-        materialCalendarView.addDecorators(
-                new SundayDecorator(),
-                new SaturdayDecorator(),
-                oneDayDecorator);
-
-        materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
+        btn2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-                Toast.makeText(getApplicationContext(), "test" , Toast.LENGTH_SHORT).show();
-
+            public void onClick(View view) {
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                Fragment_Expense fragmentExpense = new Fragment_Expense();
+                transaction.replace(R.id.frame,fragmentExpense);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
+
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                Fragment_Statistics fragmentStatistics = new Fragment_Statistics();
+                transaction.replace(R.id.frame,fragmentStatistics);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+
     }
-
-    /*private void addDataSet(PieChart chart){
-        ArrayList<PieEntry> yEntrys = new ArrayList<>();
-        ArrayList<String> xEntrys = new ArrayList<>();
-
-        for(int i = 0; i<YData.length;i++){
-            yEntrys.add(new PieEntry(YData[i],i));
-        }
-        for(int i = 1; i<XData.length;i++){
-            xEntrys.add(XData[i]);
-        }
-
-        PieDataSet pieDataSet = new PieDataSet(yEntrys, "테스트1");
-
-
-         //add Color
-        ArrayList<Integer> colors = new ArrayList<>();
-        colors.add(Color.RED);
-        pieDataSet.setColor(colors);
-
-        //add legend to chart
-        Legend legend = pieChart.getLegend();
-        legend.setForm
-    }*/
 
     public void onButtonClick(View view) {
         finish();
