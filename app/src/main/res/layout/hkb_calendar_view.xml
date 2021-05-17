@@ -8,6 +8,7 @@
     android:orientation="vertical">
 
     <coms.example.allinonelowfiproject.mainCalendar.MaterialCalendarView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -1,11 +1,14 @@
 package coms.example.allinonelowfiproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.utils.Easing;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Layout;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -21,47 +24,57 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import org.threeten.bp.DayOfWeek;
+
 import java.util.ArrayList;
 
+import coms.example.allinonelowfiproject.decorators.OneDayDecorator;
+import coms.example.allinonelowfiproject.decorators.SaturdayDecorator;
+import coms.example.allinonelowfiproject.decorators.SundayDecorator;
+import coms.example.allinonelowfiproject.mainCalendar.CalendarDay;
+import coms.example.allinonelowfiproject.mainCalendar.CalendarMode;
+import coms.example.allinonelowfiproject.mainCalendar.DayViewDecorator;
 import coms.example.allinonelowfiproject.mainCalendar.MaterialCalendarView;
+import coms.example.allinonelowfiproject.mainCalendar.OnDateSelectedListener;
 
 public class HouseKeepingBook extends AppCompatActivity {
-
-
     MaterialCalendarView materialCalendarView;
-
     PieChart pieChart;
 
+    private final OneDayDecorator oneDayDecorator = new OneDayDecorator();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_house_keeping_book);
 
-        materialCalendarView = (MaterialCalendarView)findViewById(R.id.calendarView);
+        materialCalendarView = (MaterialCalendarView)findViewById(R.id.CalenderForHKB);
 
         Button button1 = (Button)findViewById(R.id.button1);
         Button button2 = (Button)findViewById(R.id.button2);
         Button button3 = (Button)findViewById(R.id.button3);
+        //Button calendarAddButton = (Button)findViewById(R.id.button4);
         ImageButton imageButton = (ImageButton)findViewById(R.id.imageButton2);
-        MaterialCalendarView ClanV = (MaterialCalendarView) findViewById(R.id.CalenderForHKB);
-        ClanV.setVisibility(View.INVISIBLE);
+
+        //MaterialCalendarView ClanV = (MaterialCalendarView) findViewById(R.id.CalenderForHKB);
+        materialCalendarView.setVisibility(View.INVISIBLE);
         FrameLayout FLOut = (FrameLayout) findViewById(R.id.FrameLayout1);
         FLOut.setVisibility(View.INVISIBLE);
+
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ClanV.setVisibility(View.VISIBLE);
+                materialCalendarView.setVisibility(View.VISIBLE);
                 FLOut.setVisibility(View.INVISIBLE);
             }
         });
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ClanV.setVisibility(View.INVISIBLE);
+                materialCalendarView.setVisibility(View.INVISIBLE);
                 FLOut.setVisibility(View.VISIBLE);
             }
         });
-        button3.setOnClickListener(new View.OnClickListener() {
+        /*button3.setOnClickListener(new View.OnClickListener() { //통계를 위한 pieChart <-- 오류로 인해 잠시 주석처리
             @Override
             public void onClick(View v) {
                 ClanV.setVisibility(View.INVISIBLE);
@@ -102,10 +115,23 @@ public class HouseKeepingBook extends AppCompatActivity {
 
                 pieChart.setData(data);
             }
-        });
+        });*/
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+            }
+        });
+
+        materialCalendarView.addDecorators(
+                new SundayDecorator(),
+                new SaturdayDecorator(),
+                oneDayDecorator);
+
+        materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+                Toast.makeText(getApplicationContext(), "test" , Toast.LENGTH_SHORT).show();
 
             }
         });
