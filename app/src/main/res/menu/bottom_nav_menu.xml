@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_bodyplan"
+        android:icon="@drawable/ic_group_collapse_07"
+        android:title="BodyPlan" />
+
+    <item
+        android:id="@+id/navigation_beforeandafter"
+        android:icon="@drawable/ic_group_collapse_07"
+        android:title="BeforeAndafter" />
+
+    <item
+        android:id="@+id/navigation_monthly"
+        android:icon="@drawable/ic_group_collapse_07"
+        android:title="Monthly" />
+    <item
+        android:id="@+id/navigation_today"
+        android:icon="@drawable/ic_group_collapse_07"
+        android:title="Today" />
+
+    <item
+        android:id="@+id/navigation_Setting"
+        android:icon="@drawable/ic_group_collapse_07"
+        android:title="Setting" />
+
+</menu>

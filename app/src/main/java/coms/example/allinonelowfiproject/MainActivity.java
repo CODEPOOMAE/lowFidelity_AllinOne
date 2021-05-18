@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setTitleTextColor(Color.WHITE);
 
         Button button = findViewById(R.id.HKB_btn);
+
         setSupportActionBar(toolbar);
 
         new SlidingRootNavBuilder(this)
@@ -129,10 +130,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void onButtonClick(View view){
-        Intent newIntent = new Intent(getApplicationContext(),HouseKeepingBook.class);
+        Intent newIntent = new Intent(getApplicationContext(),ExerciseDiaryMain.class);
         startActivity(newIntent);
     }
-
     private class ApiSimulator extends AsyncTask<Void, Void, List<CalendarDay>> {
 
         String[] Time_Result;

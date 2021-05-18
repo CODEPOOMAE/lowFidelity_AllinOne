@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_beforeandafter">
+
+
+    <fragment
+        android:id="@+id/beforeAndAfterFragment2"
+        android:name="coms.example.allinonelowfiproject.ExerciseDiary.BeforeAndAfter.BeforeAndAfterFragment"
+        android:label="before_and_after_fragment"
+        tools:layout="@layout/before_and_after_fragment" />
+    <fragment
+        android:id="@+id/exerciseSettingFragment"
+        android:name="coms.example.allinonelowfiproject.ExerciseDiary.ExerciseSetting.ExerciseSettingFragment"
+        android:label="exercise_setting_fragment"
+        tools:layout="@layout/exercise_setting_fragment" />
+    <fragment
+        android:id="@+id/bodyPlanFragment"
+        android:name="coms.example.allinonelowfiproject.ExerciseDiary.BodyPlan.BodyPlanFragment"
+        android:label="body_plan_fragment"
+        tools:layout="@layout/body_plan_fragment" />
+    <fragment
+        android:id="@+id/monthlyFragment"
+        android:name="coms.example.allinonelowfiproject.ExerciseDiary.Monthly.MonthlyFragment"
+        android:label="monthly_fragment"
+        tools:layout="@layout/monthly_fragment" />
+    <fragment
+        android:id="@+id/todayFragment"
+        android:name="coms.example.allinonelowfiproject.ExerciseDiary.Today.TodayFragment"
+        android:label="today_fragment"
+        tools:layout="@layout/today_fragment" />
+</navigation>
