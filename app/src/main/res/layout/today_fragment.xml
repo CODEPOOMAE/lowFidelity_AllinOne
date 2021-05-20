@@ -91,9 +91,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Value" />
-
-            <TextView
+            <EditText
                 android:id="@+id/text_today_record_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text=" " />
+            <TextView
+                android:id="@+id/text_today_record_unit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

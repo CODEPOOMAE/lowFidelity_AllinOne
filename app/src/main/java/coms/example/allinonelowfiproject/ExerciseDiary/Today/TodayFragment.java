@@ -44,7 +44,8 @@ public class TodayFragment extends Fragment {
     private TextView textNight;
 
     private TextView textValue;
-    private TextView textValueNum;
+    private EditText textValueNum;
+    private TextView textValueUnit;
 
     private Button weightBtn;
     private Button waistBtn;
@@ -52,6 +53,14 @@ public class TodayFragment extends Fragment {
     private Button hipBtn;
     private Button fatBtn;
     private Button muscleBtn;
+
+    private Double todayWeight;
+    private Double todayWaist;
+    private Double todayChest;
+    private Double todayHip;
+    private Double todayFat;
+    private Double todayMuscle;
+
 
     private TextView textWater;
     private RatingBar waterValue;
@@ -79,6 +88,7 @@ public class TodayFragment extends Fragment {
 
         textValue = root.findViewById(R.id.text_today_record);
         textValueNum = root.findViewById(R.id.text_today_record_value);
+        textValueUnit = root.findViewById(R.id.text_today_record_unit);
 
         weightBtn = root.findViewById(R.id.button_today_weight);
         waistBtn = root.findViewById(R.id.button_today_waist);
@@ -113,6 +123,66 @@ public class TodayFragment extends Fragment {
                 textWakeup.setText(dialogFragment.toString());
             }
         });
+
+        //Set Night Time
+        textNight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerFragment dialogFragment = new TimePickerFragment();
+                textNight.setText(dialogFragment.toString());
+            }
+        });
+
+        //Button and Set Record Text
+        weightBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textValue.setText("WEIGHT");
+                todayWeight = Double.parseDouble(textValueNum.getText().toString());
+                textValueUnit.setText("KG");
+            }
+        });
+        waistBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textValue.setText("Waist");
+                todayWaist = Double.parseDouble(textValueNum.getText().toString());
+                textValueUnit.setText("mm");
+            }
+        });
+        chestBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textValue.setText("Chest");
+                todayChest = Double.parseDouble(textValueNum.getText().toString());
+                textValueUnit.setText("mm");
+            }
+        });
+        hipBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textValue.setText("Hip");
+                todayHip = Double.parseDouble(textValueNum.getText().toString());
+                textValueUnit.setText("mm");
+            }
+        });
+        fatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textValue.setText("Fat");
+                todayFat = Double.parseDouble(textValueNum.getText().toString());
+                textValueUnit.setText("%");
+            }
+        });
+        muscleBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textValue.setText("Muscle");
+                todayMuscle = Double.parseDouble(textValueNum.getText().toString());
+                textValueUnit.setText("%");
+            }
+        });
+
 
 
         return root;
