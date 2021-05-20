@@ -60,7 +60,14 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setTitleTextColor(Color.WHITE);
 
         Button button = findViewById(R.id.HKB_btn);
-
+        button.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO : click event
+                Intent newIntent = new Intent(getApplicationContext(),ExerciseDiaryMain.class);
+                startActivity(newIntent);
+            }
+        });
         setSupportActionBar(toolbar);
 
         new SlidingRootNavBuilder(this)
