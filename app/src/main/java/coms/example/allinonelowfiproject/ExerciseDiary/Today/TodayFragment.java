@@ -183,7 +183,7 @@ public class TodayFragment extends Fragment {
             }
         });
 
-        //Set Water Rate
+
 
         return root;
     }
