@@ -7,27 +7,29 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        >
+        android:layout_height="565dp"
+        android:layout_gravity="center">
+
         <Button
             android:id="@+id/btn_Day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="일간"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:text="일간" />
+
         <Button
-            android:id="@+id/btn_Wee"
+            android:id="@+id/btn_Week"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="주간"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:text="주간" />
+
         <Button
-            android:id="@+id/btn_Mon"
+            android:id="@+id/btn_Month"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="월간"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:text="월간" />
 
     </LinearLayout>
 
