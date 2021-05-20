@@ -183,5 +183,3 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
-
-//Test for mac
