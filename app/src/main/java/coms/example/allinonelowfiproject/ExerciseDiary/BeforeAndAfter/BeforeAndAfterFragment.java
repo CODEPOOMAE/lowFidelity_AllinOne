@@ -2,6 +2,8 @@ package coms.example.allinonelowfiproject.ExerciseDiary.BeforeAndAfter;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,10 +19,10 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import coms.example.allinonelowfiproject.ExerciseDiaryMainActivity;
 import coms.example.allinonelowfiproject.R;
-
-import static android.app.Activity.RESULT_OK;
 
 public class BeforeAndAfterFragment extends Fragment {
 
@@ -60,12 +62,19 @@ public class BeforeAndAfterFragment extends Fragment {
     private Double afterFat;
     private Double afterMuscle;
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        //이 메소드가 호출될떄는 프래그먼트가 엑티비티위에 올라와있는거니깐 getActivity메소드로 엑티비티참조가능
+        Activity activity = (ExerciseDiaryMainActivity) getActivity();
+    }
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.before_and_after_fragment, container, false);
-        beforeAndAfterViewModelViewModel = new ViewModelProvider(this).get(BeforeAndAfterViewModel.class);
+//        beforeAndAfterViewModelViewModel = new ViewModelProvider(this).get(BeforeAndAfterViewModel.class);
 
         //Photo Reading
         beforeImageView = root.findViewById(R.id.table_before_photo);
@@ -88,23 +97,44 @@ public class BeforeAndAfterFragment extends Fragment {
         afterMuscleText = root.findViewById(R.id.table_value_after_muscle);
 
         //before Image Loading
-        beforeImageView.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
-                startActivityForResult(intent,GET_GALLERY_IMAGE);
-            }
-        });
+//        beforeImageView.setOnClickListener(new View.OnClickListener(){
+//            public void onClick(View v){
+//                Intent intent = new Intent(Intent.ACTION_PICK);
+//                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
+//                startActivityForResult(intent,GET_GALLERY_IMAGE);
+//            }
+//        });
+
+
         //before Data
-        beforeWeight = Double.parseDouble(beforeWeightText.getText().toString());
-        beforeChest =  Double.parseDouble(beforeChestText.getText().toString());
-        beforeWaist = Double.parseDouble(beforeWaistText.getText().toString());
-        beforeHip = Double.parseDouble(beforeHipText.getText().toString());
-        beforeFat = Double.parseDouble(beforeFatText.getText().toString());
-        beforeMuscle = Double.parseDouble(beforeMuscleText.getText().toString());
+        if(beforeWeightText.getText().toString().length()!=0) {
+            beforeWeight = Double.parseDouble(beforeWeightText.getText().toString());
+        }
+
+        if(beforeChestText.getText().toString().length()!=0) {
+            beforeChest =  Double.parseDouble(beforeChestText.getText().toString());
+        }
+
+        if(beforeWaistText.getText().toString().length()!=0) {
+            beforeWaist = Double.parseDouble(beforeWaistText.getText().toString());
+        }
+
+        if(beforeHipText.getText().toString().length()!=0) {
+            beforeHip = Double.parseDouble(beforeHipText.getText().toString());
+        }
+
+        if(beforeFatText.getText().toString().length()!=0){
+            beforeFat = Double.parseDouble(beforeFatText.getText().toString());
+        }
+
+        if(beforeMuscleText.getText().toString().length()!=0) {
+            beforeMuscle = Double.parseDouble(beforeMuscleText.getText().toString());
+        }
+
+
 
         //afterImage Loading
-        afterImageView.setImageDrawable(getResources().getDrawable(R.drawable.common_full_open_on_phone));
+//        afterImageView.setImageDrawable(getResources().getDrawable(R.drawable.common_full_open_on_phone));
 
         //afterData
         afterWeight=0.0;
@@ -119,6 +149,10 @@ public class BeforeAndAfterFragment extends Fragment {
         afterHipText.setText(afterHip.toString());
         afterFatText.setText(afterFat.toString());
         afterMuscleText.setText(afterMuscle.toString());
+
+        Context context;
+        context = container.getContext();
+        Toast.makeText(context,"BeforeAndAfterFragment",Toast.LENGTH_LONG).show();
 
 
 
