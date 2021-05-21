@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
 
         Button button = findViewById(R.id.HKB_btn);
         TextView dashT = findViewById(R.id.main_dashboard_t);
-
         setSupportActionBar(toolbar);
 
         new SlidingRootNavBuilder(this)
@@ -152,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void onButtonClick(View view){
         Intent newIntent = new Intent(getApplicationContext(), ExerciseDiaryMainActivity.class);
+       // Intent newIntent = new Intent(getApplicationContext(),HouseKeepingBook.class);
         startActivity(newIntent);
     }
     private class ApiSimulator extends AsyncTask<Void, Void, List<CalendarDay>> {

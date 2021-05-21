@@ -8,7 +8,7 @@
     <coms.example.allinonelowfiproject.mainCalendar.MaterialCalendarView
         android:id="@+id/calendarView_HKB"
         android:layout_width="match_parent"
-        android:layout_height="610dp"
+        android:layout_height="556dp"
         android:layout_gravity="center"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="15dp"

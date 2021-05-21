@@ -24,20 +24,16 @@ import coms.example.allinonelowfiproject.mainCalendar.OnDateSelectedListener;
 
 public class Fragment_Caledar extends Fragment {
 
-    private final OneDayDecorator oneDayDecorator = new OneDayDecorator();
-    MaterialCalendarView materialCalendarView;
-
-    public Fragment_Caledar(){
-
-    }
+    private static MaterialCalendarView materialCalendarView;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        //View view = inflater.inflate(R.layout.fragment_calendar,container,false);
-        //Toast.makeText(getActivity(),"Hello",Toast.LENGTH_SHORT).show();
+        View view = inflater.inflate(R.layout.fragment_calendar,container,false);
 
-        /*materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
+        materialCalendarView = view.findViewById(R.id.calendarView_HKB);
+        materialCalendarView.addDecorators(new SundayDecorator(), new SaturdayDecorator());
+        materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
                 int Year = date.getYear();
@@ -55,8 +51,7 @@ public class Fragment_Caledar extends Fragment {
 
                 Toast.makeText(getActivity(), shot_Day , Toast.LENGTH_SHORT).show();
             }
-        });*/
-
-        return inflater.inflate(R.layout.fragment_calendar, container,false);
+        });
+        return view;
     }
 }
