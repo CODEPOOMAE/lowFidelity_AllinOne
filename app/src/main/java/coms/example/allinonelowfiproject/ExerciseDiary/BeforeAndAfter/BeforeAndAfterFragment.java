@@ -134,7 +134,7 @@ public class BeforeAndAfterFragment extends Fragment {
 
 
         //afterImage Loading
-//        afterImageView.setImageDrawable(getResources().getDrawable(R.drawable.common_full_open_on_phone));
+        afterImageView.setImageDrawable(getResources().getDrawable(R.drawable.common_full_open_on_phone));
 
         //afterData
         afterWeight=0.0;
