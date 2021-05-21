@@ -3,6 +3,7 @@ package coms.example.allinonelowfiproject.ExerciseDiary.BodyPlan;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -19,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -58,33 +60,36 @@ public class BodyPlanFragment extends Fragment {
         bodyPlanViewModel = new ViewModelProvider(this).get(BodyPlanViewModel.class);
         View root = inflater.inflate(R.layout.body_plan_fragment, container, false);
 
-        wannabePhoto = root.findViewById(R.id.wannabe_photo);
-        startDayText = root.findViewById(R.id.text_start_day);
-        calenderStartDayBtn=root.findViewById(R.id.button_start_calender);
-        finishDayText = root.findViewById(R.id.text_finish_day);
-        calenderFinishDayBtn = root.findViewById(R.id.button_finish_calender);
-        dDayText = root.findViewById(R.id.text_dday);
-        howMessageText = root.findViewById(R.id.text_how);
-        whyMessageText = root.findViewById(R.id.text_why);
+//        wannabePhoto = root.findViewById(R.id.wannabe_photo);
+//        startDayText = root.findViewById(R.id.text_start_day);
+//        calenderStartDayBtn=root.findViewById(R.id.button_start_calender);
+//        finishDayText = root.findViewById(R.id.text_finish_day);
+//        calenderFinishDayBtn = root.findViewById(R.id.button_finish_calender);
+//        dDayText = root.findViewById(R.id.text_dday);
+//        howMessageText = root.findViewById(R.id.text_how);
+//        whyMessageText = root.findViewById(R.id.text_why);
+//
+//        //WannabePhoto Upload
+//        wannabePhoto.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(Intent.ACTION_PICK);
+//                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
+//                startActivityForResult(intent,GET_GALLERY_IMAGE);
+//            }
+//        });
+//
+//        //Set Start Day
+//        calenderStartDayBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                showDatePicker();
+//            }
+//        });
 
-        //WannabePhoto Upload
-        wannabePhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
-                startActivityForResult(intent,GET_GALLERY_IMAGE);
-            }
-        });
-
-        //Set Start Day
-        calenderStartDayBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDatePicker();
-            }
-        });
-
+        Context context;
+        context = container.getContext();
+        Toast.makeText(context,"BodyPlanFragment",Toast.LENGTH_LONG).show();
 
 
         return root;

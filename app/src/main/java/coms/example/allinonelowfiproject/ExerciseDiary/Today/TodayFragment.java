@@ -1,10 +1,8 @@
 package coms.example.allinonelowfiproject.ExerciseDiary.Today;
 
-import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.app.TimePickerDialog;
-import android.media.Rating;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,14 +18,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.TimePicker;
-
-import org.w3c.dom.Text;
+import android.widget.Toast;
 
 import java.util.Date;
 
-import coms.example.allinonelowfiproject.ExerciseDiary.BeforeAndAfter.BeforeAndAfterViewModel;
-import coms.example.allinonelowfiproject.ExerciseDiaryMain;
 import coms.example.allinonelowfiproject.R;
 
 public class TodayFragment extends Fragment {
@@ -80,110 +74,115 @@ public class TodayFragment extends Fragment {
         View root = inflater.inflate(R.layout.today_fragment, container, false);
         todayViewModel = new ViewModelProvider(this).get(TodayViewModel.class);
 
-        textDDay = root.findViewById(R.id.text_today_dday);
-        textDate = root.findViewById(R.id.text_today_date);
+//        textDDay = root.findViewById(R.id.text_today_dday);
+//        textDate = root.findViewById(R.id.text_today_date);
+//
+//        textWakeup = root.findViewById(R.id.text_today_wakeup);
+//        textNight = root.findViewById(R.id.text_today_night);
+//
+//        textValue = root.findViewById(R.id.text_today_record);
+//        textValueNum = root.findViewById(R.id.text_today_record_value);
+//        textValueUnit = root.findViewById(R.id.text_today_record_unit);
+//
+//        weightBtn = root.findViewById(R.id.button_today_weight);
+//        waistBtn = root.findViewById(R.id.button_today_waist);
+//        chestBtn = root.findViewById(R.id.button_today_chest);
+//        hipBtn = root.findViewById(R.id.button_today_hip);
+//        fatBtn = root.findViewById(R.id.button_today_fat);
+//        muscleBtn = root.findViewById(R.id.button_today_muscle);
+//
+//        textWater = root.findViewById(R.id.text_today_water_value);
+//        waterValue = root.findViewById(R.id.today_water_rating);
+//
+//        todayMealRecyclerView = root.findViewById(R.id.today_meal_recycler);
+//        todayWorkOutRecyclerView = root.findViewById(R.id.today_workout_recycler);
+//
+//        todayScore = root.findViewById(R.id.today_score);
+//        textTodayImpression = root.findViewById(R.id.text_today_impression);
+//        todayPhoto = root.findViewById(R.id.today_photo);
+//
+//        //Set Dday
+//
+//
+//        //Set date
+//        long now = System.currentTimeMillis();
+//        Date date = new Date(now);
+//        textDate.setText(date.toString());
+//
+//        //Set Wakeup Time
+//        textWakeup.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                TimePickerFragment dialogFragment = new TimePickerFragment();
+//                textWakeup.setText(dialogFragment.toString());
+//            }
+//        });
+//
+//        //Set Night Time
+//        textNight.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                TimePickerFragment dialogFragment = new TimePickerFragment();
+//                textNight.setText(dialogFragment.toString());
+//            }
+//        });
+//
+//        //Button and Set Record Text
+//        weightBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                textValue.setText("WEIGHT");
+//                todayWeight = Double.parseDouble(textValueNum.getText().toString());
+//                textValueUnit.setText("KG");
+//            }
+//        });
+//        waistBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                textValue.setText("Waist");
+//                todayWaist = Double.parseDouble(textValueNum.getText().toString());
+//                textValueUnit.setText("mm");
+//            }
+//        });
+//        chestBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                textValue.setText("Chest");
+//                todayChest = Double.parseDouble(textValueNum.getText().toString());
+//                textValueUnit.setText("mm");
+//            }
+//        });
+//        hipBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                textValue.setText("Hip");
+//                todayHip = Double.parseDouble(textValueNum.getText().toString());
+//                textValueUnit.setText("mm");
+//            }
+//        });
+//        fatBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                textValue.setText("Fat");
+//                todayFat = Double.parseDouble(textValueNum.getText().toString());
+//                textValueUnit.setText("%");
+//            }
+//        });
+//        muscleBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                textValue.setText("Muscle");
+//                todayMuscle = Double.parseDouble(textValueNum.getText().toString());
+//                textValueUnit.setText("%");
+//            }
+//        });
+//
+//        //Set Water Rate
 
-        textWakeup = root.findViewById(R.id.text_today_wakeup);
-        textNight = root.findViewById(R.id.text_today_night);
-
-        textValue = root.findViewById(R.id.text_today_record);
-        textValueNum = root.findViewById(R.id.text_today_record_value);
-        textValueUnit = root.findViewById(R.id.text_today_record_unit);
-
-        weightBtn = root.findViewById(R.id.button_today_weight);
-        waistBtn = root.findViewById(R.id.button_today_waist);
-        chestBtn = root.findViewById(R.id.button_today_chest);
-        hipBtn = root.findViewById(R.id.button_today_hip);
-        fatBtn = root.findViewById(R.id.button_today_fat);
-        muscleBtn = root.findViewById(R.id.button_today_muscle);
-
-        textWater = root.findViewById(R.id.text_today_water_value);
-        waterValue = root.findViewById(R.id.today_water_rating);
-
-        todayMealRecyclerView = root.findViewById(R.id.today_meal_recycler);
-        todayWorkOutRecyclerView = root.findViewById(R.id.today_workout_recycler);
-
-        todayScore = root.findViewById(R.id.today_score);
-        textTodayImpression = root.findViewById(R.id.text_today_impression);
-        todayPhoto = root.findViewById(R.id.today_photo);
-
-        //Set Dday
-
-
-        //Set date
-        long now = System.currentTimeMillis();
-        Date date = new Date(now);
-        textDate.setText(date.toString());
-
-        //Set Wakeup Time
-        textWakeup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TimePickerFragment dialogFragment = new TimePickerFragment();
-                textWakeup.setText(dialogFragment.toString());
-            }
-        });
-
-        //Set Night Time
-        textNight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TimePickerFragment dialogFragment = new TimePickerFragment();
-                textNight.setText(dialogFragment.toString());
-            }
-        });
-
-        //Button and Set Record Text
-        weightBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                textValue.setText("WEIGHT");
-                todayWeight = Double.parseDouble(textValueNum.getText().toString());
-                textValueUnit.setText("KG");
-            }
-        });
-        waistBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                textValue.setText("Waist");
-                todayWaist = Double.parseDouble(textValueNum.getText().toString());
-                textValueUnit.setText("mm");
-            }
-        });
-        chestBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                textValue.setText("Chest");
-                todayChest = Double.parseDouble(textValueNum.getText().toString());
-                textValueUnit.setText("mm");
-            }
-        });
-        hipBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                textValue.setText("Hip");
-                todayHip = Double.parseDouble(textValueNum.getText().toString());
-                textValueUnit.setText("mm");
-            }
-        });
-        fatBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                textValue.setText("Fat");
-                todayFat = Double.parseDouble(textValueNum.getText().toString());
-                textValueUnit.setText("%");
-            }
-        });
-        muscleBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                textValue.setText("Muscle");
-                todayMuscle = Double.parseDouble(textValueNum.getText().toString());
-                textValueUnit.setText("%");
-            }
-        });
-
-        //pull request Test!!
+        Context context;
+        context = container.getContext();
+        Toast.makeText(context,"TodayFragment",Toast.LENGTH_LONG).show();
+        
 
         return root;
     }
