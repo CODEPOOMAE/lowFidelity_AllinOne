@@ -97,13 +97,13 @@ public class BeforeAndAfterFragment extends Fragment {
         afterMuscleText = root.findViewById(R.id.table_value_after_muscle);
 
         //before Image Loading
-//        beforeImageView.setOnClickListener(new View.OnClickListener(){
-//            public void onClick(View v){
-//                Intent intent = new Intent(Intent.ACTION_PICK);
-//                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
-//                startActivityForResult(intent,GET_GALLERY_IMAGE);
-//            }
-//        });
+        beforeImageView.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
+                startActivityForResult(intent,GET_GALLERY_IMAGE);
+            }
+        });
 
 
         //before Data
@@ -153,8 +153,6 @@ public class BeforeAndAfterFragment extends Fragment {
         Context context;
         context = container.getContext();
         Toast.makeText(context,"BeforeAndAfterFragment",Toast.LENGTH_LONG).show();
-
-
 
 
         return root;
