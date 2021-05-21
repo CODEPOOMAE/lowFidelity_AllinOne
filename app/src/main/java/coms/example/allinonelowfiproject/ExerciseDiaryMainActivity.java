@@ -27,19 +27,26 @@ public class ExerciseDiaryMainActivity extends AppCompatActivity {
 
     FragmentTransaction fragmentTransaction;
 
-    BeforeAndAfterFragment beforeAndAfterFragment = new BeforeAndAfterFragment();
-    BodyPlanFragment bodyPlanFragment = new BodyPlanFragment();
-    ExerciseSettingFragment exerciseSettingFragment = new ExerciseSettingFragment();
-    MonthlyFragment monthlyFragment = new MonthlyFragment();
-    TodayFragment todayFragment = new TodayFragment();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+        BeforeAndAfterFragment beforeAndAfterFragment = new BeforeAndAfterFragment();
+        BodyPlanFragment bodyPlanFragment = new BodyPlanFragment();
+        ExerciseSettingFragment exerciseSettingFragment = new ExerciseSettingFragment();
+        MonthlyFragment monthlyFragment = new MonthlyFragment();
+        TodayFragment todayFragment = new TodayFragment();
+
         Log.e("ExerciseDiary","onCreat");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise_diary);
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
+
+        fragmentTransaction=getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.nav_host,beforeAndAfterFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
 
         navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
