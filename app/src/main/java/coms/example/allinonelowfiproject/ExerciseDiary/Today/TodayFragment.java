@@ -20,11 +20,14 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import coms.example.allinonelowfiproject.R;
 
 public class TodayFragment extends Fragment {
+
+    final SimpleDateFormat dataFormat = new SimpleDateFormat("MM/dd/yyyy");
 
     private TodayViewModel todayViewModel;
 
@@ -74,41 +77,43 @@ public class TodayFragment extends Fragment {
         View root = inflater.inflate(R.layout.today_fragment, container, false);
         todayViewModel = new ViewModelProvider(this).get(TodayViewModel.class);
 
-//        textDDay = root.findViewById(R.id.text_today_dday);
-//        textDate = root.findViewById(R.id.text_today_date);
-//
-//        textWakeup = root.findViewById(R.id.text_today_wakeup);
-//        textNight = root.findViewById(R.id.text_today_night);
-//
-//        textValue = root.findViewById(R.id.text_today_record);
-//        textValueNum = root.findViewById(R.id.text_today_record_value);
-//        textValueUnit = root.findViewById(R.id.text_today_record_unit);
-//
-//        weightBtn = root.findViewById(R.id.button_today_weight);
-//        waistBtn = root.findViewById(R.id.button_today_waist);
-//        chestBtn = root.findViewById(R.id.button_today_chest);
-//        hipBtn = root.findViewById(R.id.button_today_hip);
-//        fatBtn = root.findViewById(R.id.button_today_fat);
-//        muscleBtn = root.findViewById(R.id.button_today_muscle);
-//
-//        textWater = root.findViewById(R.id.text_today_water_value);
-//        waterValue = root.findViewById(R.id.today_water_rating);
-//
-//        todayMealRecyclerView = root.findViewById(R.id.today_meal_recycler);
-//        todayWorkOutRecyclerView = root.findViewById(R.id.today_workout_recycler);
-//
-//        todayScore = root.findViewById(R.id.today_score);
-//        textTodayImpression = root.findViewById(R.id.text_today_impression);
-//        todayPhoto = root.findViewById(R.id.today_photo);
+        textDDay = root.findViewById(R.id.text_today_dday);
+        textDate = root.findViewById(R.id.text_today_date);
+
+        textWakeup = root.findViewById(R.id.text_today_wakeup);
+        textNight = root.findViewById(R.id.text_today_night);
+
+        textValue = root.findViewById(R.id.text_today_record);
+        textValueNum = root.findViewById(R.id.text_today_record_value);
+        textValueUnit = root.findViewById(R.id.text_today_record_unit);
+
+        weightBtn = root.findViewById(R.id.button_today_weight);
+        waistBtn = root.findViewById(R.id.button_today_waist);
+        chestBtn = root.findViewById(R.id.button_today_chest);
+        hipBtn = root.findViewById(R.id.button_today_hip);
+        fatBtn = root.findViewById(R.id.button_today_fat);
+        muscleBtn = root.findViewById(R.id.button_today_muscle);
+
+        textWater = root.findViewById(R.id.text_today_water_value);
+        waterValue = root.findViewById(R.id.today_water_rating);
+
+        todayMealRecyclerView = root.findViewById(R.id.today_meal_recycler);
+        todayWorkOutRecyclerView = root.findViewById(R.id.today_workout_recycler);
+
+        todayScore = root.findViewById(R.id.today_score);
+        textTodayImpression = root.findViewById(R.id.text_today_impression);
+        todayPhoto = root.findViewById(R.id.today_photo);
 //
 //        //Set Dday
 //
 //
-//        //Set date
-//        long now = System.currentTimeMillis();
-//        Date date = new Date(now);
-//        textDate.setText(date.toString());
-//
+        //Set date
+
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+        String nowDay = dataFormat.format(date);
+        textDate.setText(nowDay);
+
 //        //Set Wakeup Time
 //        textWakeup.setOnClickListener(new View.OnClickListener() {
 //            @Override
