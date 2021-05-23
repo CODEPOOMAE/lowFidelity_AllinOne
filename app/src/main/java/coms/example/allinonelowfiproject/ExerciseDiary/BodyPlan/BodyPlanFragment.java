@@ -1,10 +1,15 @@
 package coms.example.allinonelowfiproject.ExerciseDiary.BodyPlan;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDialogFragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -39,18 +44,31 @@ public class BodyPlanFragment extends Fragment {
 
     private TextView startDayText;
     private ImageButton calenderStartDayBtn;
+
     private TextView finishDayText;
     private ImageButton calenderFinishDayBtn;
     private TextView dDayText;
     private EditText howMessageText;
     private EditText whyMessageText;
 
-    private Calendar startDay;
-    private Calendar finishDay;
+    private String startDay;
+    private String finishDay;
     private long diffDay;
     private String how;
     private String why;
 
+    public static final int REQUEST_CODE_START = 11; // Used to identify the result
+    private OnFragmentInteractionListener mListener;
+
+    public static BodyPlanFragment newInstacne(){
+        BodyPlanFragment fragment = new BodyPlanFragment();
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+    }
 
 
     @Override
@@ -60,32 +78,38 @@ public class BodyPlanFragment extends Fragment {
         bodyPlanViewModel = new ViewModelProvider(this).get(BodyPlanViewModel.class);
         View root = inflater.inflate(R.layout.body_plan_fragment, container, false);
 
-//        wannabePhoto = root.findViewById(R.id.wannabe_photo);
-//        startDayText = root.findViewById(R.id.text_start_day);
-//        calenderStartDayBtn=root.findViewById(R.id.button_start_calender);
-//        finishDayText = root.findViewById(R.id.text_finish_day);
-//        calenderFinishDayBtn = root.findViewById(R.id.button_finish_calender);
-//        dDayText = root.findViewById(R.id.text_dday);
-//        howMessageText = root.findViewById(R.id.text_how);
-//        whyMessageText = root.findViewById(R.id.text_why);
-//
-//        //WannabePhoto Upload
-//        wannabePhoto.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(Intent.ACTION_PICK);
-//                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
-//                startActivityForResult(intent,GET_GALLERY_IMAGE);
-//            }
-//        });
-//
-//        //Set Start Day
-//        calenderStartDayBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                showDatePicker();
-//            }
-//        });
+        wannabePhoto = root.findViewById(R.id.wannabe_photo);
+        startDayText = root.findViewById(R.id.text_start_day);
+        calenderStartDayBtn=root.findViewById(R.id.button_start_calender);
+        finishDayText = root.findViewById(R.id.text_finish_day);
+        calenderFinishDayBtn = root.findViewById(R.id.button_finish_calender);
+        dDayText = root.findViewById(R.id.text_dday);
+        howMessageText = root.findViewById(R.id.write_how);
+        whyMessageText = root.findViewById(R.id.write_why);
+
+        //WannabePhoto Upload
+        wannabePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
+                startActivityForResult(intent,GET_GALLERY_IMAGE);
+            }
+        });
+
+        //StartDatePicker
+        startDayText.addTextChangedListener(new DateMask());
+        final FragmentManager fm = ((AppCompatActivity)getActivity()).getSupportFragmentManager();
+        calenderStartDayBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppCompatDialogFragment newFragment = new DatePickerFragment();
+                newFragment.setTargetFragment(BodyPlanFragment.this,REQUEST_CODE_START);
+                newFragment.show(fm,"DatePicker");
+            }
+        });
+
+
 
         Context context;
         context = container.getContext();
@@ -95,42 +119,33 @@ public class BodyPlanFragment extends Fragment {
         return root;
     }
 
-    private void showDatePicker() {
-        DatePickerFragment date = new DatePickerFragment();
-        /**
-         * Set Up Current Date Into dialog
-         */
-        Calendar calender = Calendar.getInstance();
-        Bundle args = new Bundle();
-        args.putInt("year", calender.get(Calendar.YEAR));
-        args.putInt("month", calender.get(Calendar.MONTH));
-        args.putInt("day", calender.get(Calendar.DAY_OF_MONTH));
-        date.setArguments(args);
-        /**
-         * Set Call back to capture selected date
-         */
-        date.setCallBack(ondate);
-        date.show(getFragmentManager(), "Date Picker");
-    }
-
-    DatePickerDialog.OnDateSetListener ondate = new DatePickerDialog.OnDateSetListener() {
-
-        public void onDateSet(DatePicker view, int year, int month, int day) {
-            //날짜 설정됨
-            Calendar selectedCalendar = Calendar.getInstance();
-            selectedCalendar.set(Calendar.YEAR, year);
-            selectedCalendar.set(Calendar.MONTH, month);
-            selectedCalendar.set(Calendar.DAY_OF_MONTH, day);
-            // 달력의 년월일을 버튼에서 넘겨받은 년월일로 설정
-
-            Date curDate = selectedCalendar.getTime(); // 현재를 넘겨줌
-            setSelectedDate(curDate);
-
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(requestCode == REQUEST_CODE_START && resultCode == Activity.RESULT_OK){
+            startDay = data.getStringExtra("selectdDate");
+            startDayText.setText(startDay);
         }
-    };
-
-    private void setSelectedDate(Date curDate) {
-        String selectedDateStr = dataFormat.format(curDate);
     }
+
+    @Override
+    public void onAttach(Context context){
+        super.onAttach(context);
+        if(context instanceof OnFragmentInteractionListener){
+            mListener = (OnFragmentInteractionListener) context;
+        }else{
+            throw new RuntimeException(context.toString()+"must implement OnFragmentListener");
+        }
+    }
+
+    @Override
+    public void onDetach(){
+        super.onDetach();
+        mListener=null;
+    }
+
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
+    }
+
 }

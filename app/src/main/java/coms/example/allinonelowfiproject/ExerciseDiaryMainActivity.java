@@ -9,6 +9,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -23,7 +24,7 @@ import coms.example.allinonelowfiproject.ExerciseDiary.ExerciseSetting.ExerciseS
 import coms.example.allinonelowfiproject.ExerciseDiary.Monthly.MonthlyFragment;
 import coms.example.allinonelowfiproject.ExerciseDiary.Today.TodayFragment;
 
-public class ExerciseDiaryMainActivity extends AppCompatActivity {
+public class ExerciseDiaryMainActivity extends AppCompatActivity implements BodyPlanFragment.OnFragmentInteractionListener {
 
     FragmentTransaction fragmentTransaction;
 
@@ -88,6 +89,11 @@ public class ExerciseDiaryMainActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
     }
 }

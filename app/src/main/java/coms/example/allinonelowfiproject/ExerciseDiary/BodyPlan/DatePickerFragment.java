@@ -2,36 +2,52 @@ package coms.example.allinonelowfiproject.ExerciseDiary.BodyPlan;
 
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.DatePicker;
 
-import androidx.fragment.app.DialogFragment;
+import androidx.appcompat.app.AppCompatDialogFragment;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 
-public class DatePickerFragment extends DialogFragment {
+public class DatePickerFragment extends AppCompatDialogFragment implements DatePickerDialog.OnDateSetListener{
 
-    private DatePickerDialog.OnDateSetListener ondateSet;
-
-    private int year, month, day;
-
-    public DatePickerFragment() {}
-
-    public void setCallBack(DatePickerDialog.OnDateSetListener ondate) {
-        ondateSet = ondate;
-    }
-
-    @SuppressLint("NewApi")
-    @Override
-    public void setArguments(Bundle args) {
-        super.setArguments(args);
-        year = args.getInt("year");
-        month = args.getInt("month");
-        day = args.getInt("day");
-    }
+    private static final String TAG = "DatePickerFragment";
+    final Calendar c = Calendar.getInstance();
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        return new DatePickerDialog(getActivity(), ondateSet, year, month, day);
+
+        // Set the current date as the default date
+        final Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+
+        // Return a new instance of DatePickerDialog
+        return new DatePickerDialog(getActivity(), DatePickerFragment.this, year, month, day);
+    }
+
+    // called when a date has been selected
+    public void onDateSet(DatePicker view, int year, int month, int day) {
+        c.set(Calendar.YEAR, year);
+        c.set(Calendar.MONTH, month);
+        c.set(Calendar.DAY_OF_MONTH, day);
+        String selectedDate = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH).format(c.getTime());
+
+        Log.d(TAG, "onDateSet: " + selectedDate);
+        // send date back to the target fragment
+        getTargetFragment().onActivityResult(
+                getTargetRequestCode(),
+                Activity.RESULT_OK,
+                new Intent().putExtra("selectedDate", selectedDate)
+        );
     }
 }
