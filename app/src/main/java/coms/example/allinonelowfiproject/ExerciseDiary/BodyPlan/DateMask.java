@@ -45,7 +45,7 @@ public class DateMask implements TextWatcher {
             String day = digits.substring(2, 4);
             String year = digits.substring(4);
 
-            updatedText = String.format(Locale.US, "%s/%s/%s", month, day, year);
+            updatedText = String.format(Locale.US, "%s/%s/%s", month, day,year);
         }
     }
 

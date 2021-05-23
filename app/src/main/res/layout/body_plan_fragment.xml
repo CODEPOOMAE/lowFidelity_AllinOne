@@ -114,13 +114,13 @@
                 android:text="HOW" />
 
             <EditText
+                android:enabled="true"
                 android:id="@+id/write_how"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
-                android:ems="10"
                 android:inputType="textLongMessage"
-                android:text="Write How" />
+                android:hint="Write How" />
         </LinearLayout>
         
         <!--Text Why-->
@@ -138,13 +138,14 @@
                 android:text="Why" />
 
             <EditText
+                android:enabled="true"
                 android:id="@+id/write_why"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
-                android:ems="10"
+
                 android:inputType="textLongMessage"
-                android:text="Reason" />
+                android:hint="Reason" />
         </LinearLayout>
         
     </LinearLayout>
