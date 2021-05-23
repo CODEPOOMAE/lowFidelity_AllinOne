@@ -12,6 +12,7 @@ import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -39,7 +40,9 @@ import coms.example.allinonelowfiproject.mainCalendar.MaterialCalendarView;
 import coms.example.allinonelowfiproject.mainCalendar.OnDateSelectedListener;
 
 public class HouseKeepingBook extends AppCompatActivity {
+    String wish_name;
     Button btn1, btn2, btn3;
+    EditText EditText_1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,7 @@ public class HouseKeepingBook extends AppCompatActivity {
         btn1 = (Button)findViewById(R.id.btn_calendar);
         btn2 = (Button)findViewById(R.id.btn_expense);
         btn3 = (Button)findViewById(R.id.btn_statistics);
+        EditText_1 = (EditText)findViewById(R.id.EditText_wishlist);
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
