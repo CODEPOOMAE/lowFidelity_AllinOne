@@ -148,6 +148,15 @@ public class BodyPlanFragment extends Fragment {
 //            }
 //        }
 
+        //HOW
+        if(howMessageText.getText().toString().length()!=0) {
+            how = howMessageText.getText().toString();
+        }
+
+        //WhY
+        if(whyMessageText.getText().toString().length()!=0){
+            why=whyMessageText.getText().toString();
+        }
 
 
 
