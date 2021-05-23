@@ -13,6 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -107,29 +109,107 @@ public class BeforeAndAfterFragment extends Fragment {
 
 
         //before Data
-        if(beforeWeightText.getText().toString().length()!=0) {
-            beforeWeight = Double.parseDouble(beforeWeightText.getText().toString());
-        }
+        beforeWeightText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-        if(beforeChestText.getText().toString().length()!=0) {
-            beforeChest =  Double.parseDouble(beforeChestText.getText().toString());
-        }
+            }
 
-        if(beforeWaistText.getText().toString().length()!=0) {
-            beforeWaist = Double.parseDouble(beforeWaistText.getText().toString());
-        }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-        if(beforeHipText.getText().toString().length()!=0) {
-            beforeHip = Double.parseDouble(beforeHipText.getText().toString());
-        }
+            }
 
-        if(beforeFatText.getText().toString().length()!=0){
-            beforeFat = Double.parseDouble(beforeFatText.getText().toString());
-        }
+            @Override
+            public void afterTextChanged(Editable s) {
+                beforeWeight = Double.parseDouble(beforeWeightText.getText().toString());
+            }
+        });
 
-        if(beforeMuscleText.getText().toString().length()!=0) {
-            beforeMuscle = Double.parseDouble(beforeMuscleText.getText().toString());
-        }
+        beforeChestText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                beforeChest =  Double.parseDouble(beforeChestText.getText().toString());
+            }
+        });
+
+        beforeWaistText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                beforeWaist = Double.parseDouble(beforeWaistText.getText().toString());
+            }
+        });
+
+        beforeHipText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                beforeHip = Double.parseDouble(beforeHipText.getText().toString());
+            }
+        });
+
+        beforeFatText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                beforeFat = Double.parseDouble(beforeFatText.getText().toString());
+            }
+        });
+
+        beforeMuscleText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                beforeMuscle = Double.parseDouble(beforeMuscleText.getText().toString());
+            }
+        });
 
 
 
