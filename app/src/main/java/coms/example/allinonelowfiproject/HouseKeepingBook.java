@@ -87,7 +87,6 @@ public class HouseKeepingBook extends AppCompatActivity {
                 transaction.commit();
             }
         });
-        EditText_1
 
     }
 
