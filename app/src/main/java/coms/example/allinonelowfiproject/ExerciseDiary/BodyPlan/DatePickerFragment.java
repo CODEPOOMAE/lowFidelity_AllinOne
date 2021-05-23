@@ -43,11 +43,15 @@ public class DatePickerFragment extends AppCompatDialogFragment implements DateP
         String selectedDate = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH).format(c.getTime());
 
         Log.d(TAG, "onDateSet: " + selectedDate);
+
+        Intent intent = new Intent();
+        intent.putExtra("selectedDate",selectedDate);
+
         // send date back to the target fragment
         getTargetFragment().onActivityResult(
                 getTargetRequestCode(),
                 Activity.RESULT_OK,
-                new Intent().putExtra("selectedDate", selectedDate)
+                intent
         );
     }
 }

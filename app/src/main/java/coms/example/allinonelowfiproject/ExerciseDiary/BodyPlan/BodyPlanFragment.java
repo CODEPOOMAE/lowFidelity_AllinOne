@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.JsonParser;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -35,12 +39,14 @@ import coms.example.allinonelowfiproject.R;
 
 public class BodyPlanFragment extends Fragment {
 
+    private static final String TAG = "BodyPlanFragment";
+
     private BodyPlanViewModel bodyPlanViewModel;
 
     private ImageView wannabePhoto;
     private final int GET_GALLERY_IMAGE=200;
 
-    final SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy/MM/dd");
+    final SimpleDateFormat dataFormat = new SimpleDateFormat("MM/dd/yyyy");
 
     private TextView startDayText;
     private ImageButton calenderStartDayBtn;
@@ -53,11 +59,17 @@ public class BodyPlanFragment extends Fragment {
 
     private String startDay;
     private String finishDay;
+
     private long diffDay;
+    private long calDateDays;
+    private Date SD;
+    private Date FD;
+
     private String how;
     private String why;
 
-    public static final int REQUEST_CODE_START = 11; // Used to identify the result
+    private static final int REQUEST_CODE_START = 11; // Used to identify the result
+    private static final int REQUEST_CODE_FINISH = 12;
     private OnFragmentInteractionListener mListener;
 
     public static BodyPlanFragment newInstacne(){
@@ -79,11 +91,11 @@ public class BodyPlanFragment extends Fragment {
         View root = inflater.inflate(R.layout.body_plan_fragment, container, false);
 
         wannabePhoto = root.findViewById(R.id.wannabe_photo);
-        startDayText = root.findViewById(R.id.text_start_day);
+        startDayText = root.findViewById(R.id.start_day);
         calenderStartDayBtn=root.findViewById(R.id.button_start_calender);
-        finishDayText = root.findViewById(R.id.text_finish_day);
+        finishDayText = root.findViewById(R.id.finish_day);
         calenderFinishDayBtn = root.findViewById(R.id.button_finish_calender);
-        dDayText = root.findViewById(R.id.text_dday);
+        dDayText = root.findViewById(R.id.view_dday);
         howMessageText = root.findViewById(R.id.write_how);
         whyMessageText = root.findViewById(R.id.write_why);
 
@@ -97,9 +109,10 @@ public class BodyPlanFragment extends Fragment {
             }
         });
 
+        final FragmentManager fm = ((AppCompatActivity)getActivity()).getSupportFragmentManager();
+
         //StartDatePicker
         startDayText.addTextChangedListener(new DateMask());
-        final FragmentManager fm = ((AppCompatActivity)getActivity()).getSupportFragmentManager();
         calenderStartDayBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,6 +121,33 @@ public class BodyPlanFragment extends Fragment {
                 newFragment.show(fm,"DatePicker");
             }
         });
+
+        //FinishDatePicker
+        finishDayText.addTextChangedListener(new DateMask());
+        calenderFinishDayBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppCompatDialogFragment newFragment = new DatePickerFragment();
+                newFragment.setTargetFragment(BodyPlanFragment.this,REQUEST_CODE_FINISH);
+                newFragment.show(fm,"DatePicker");
+            }
+        });
+
+//        //Set D-day
+//        if(startDay.length()!=0 && finishDay.length()!=0) {
+//            try {
+//                SD = dataFormat.parse(startDay);
+//                FD = dataFormat.parse(finishDay);
+//
+//                diffDay = FD.getTime() - SD.getTime();
+//                calDateDays = diffDay / (24 * 60 * 60 * 1000);
+//
+//                dDayText.setText("D-" + diffDay);
+//            } catch (ParseException e) {
+//
+//            }
+//        }
+
 
 
 
@@ -121,9 +161,16 @@ public class BodyPlanFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
+        Log.d(TAG,"onActivityResult / requestCode : "+requestCode + " / resultCode :"+resultCode);
         if(requestCode == REQUEST_CODE_START && resultCode == Activity.RESULT_OK){
-            startDay = data.getStringExtra("selectdDate");
+            startDay = data.getStringExtra("selectedDate");
+            Log.d(TAG,"startDayTextSetText / startDay :"+startDay);
             startDayText.setText(startDay);
+        }
+        else if(requestCode == REQUEST_CODE_FINISH && resultCode == Activity.RESULT_OK){
+            finishDay=data.getStringExtra("selectedDate");
+            Log.d(TAG,"finishDaySetText / startDay :"+finishDay);
+            finishDayText.setText(finishDay);
         }
     }
 
