@@ -106,7 +106,7 @@ public class TodayFragment extends Fragment {
 //
 //        //Set Dday
 //
-//
+
         //Set date
 
         long now = System.currentTimeMillis();
