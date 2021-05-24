@@ -2,6 +2,8 @@ package coms.example.allinonelowfiproject.ExerciseDiary.BeforeAndAfter;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,16 +13,18 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import coms.example.allinonelowfiproject.ExerciseDiaryMainActivity;
 import coms.example.allinonelowfiproject.R;
-
-import static android.app.Activity.RESULT_OK;
 
 public class BeforeAndAfterFragment extends Fragment {
 
@@ -60,12 +64,19 @@ public class BeforeAndAfterFragment extends Fragment {
     private Double afterFat;
     private Double afterMuscle;
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        //이 메소드가 호출될떄는 프래그먼트가 엑티비티위에 올라와있는거니깐 getActivity메소드로 엑티비티참조가능
+        Activity activity = (ExerciseDiaryMainActivity) getActivity();
+    }
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.before_and_after_fragment, container, false);
-        beforeAndAfterViewModelViewModel = new ViewModelProvider(this).get(BeforeAndAfterViewModel.class);
+//        beforeAndAfterViewModelViewModel = new ViewModelProvider(this).get(BeforeAndAfterViewModel.class);
 
         //Photo Reading
         beforeImageView = root.findViewById(R.id.table_before_photo);
@@ -95,13 +106,112 @@ public class BeforeAndAfterFragment extends Fragment {
                 startActivityForResult(intent,GET_GALLERY_IMAGE);
             }
         });
+
+
         //before Data
-        beforeWeight = Double.parseDouble(beforeWeightText.getText().toString());
-        beforeChest =  Double.parseDouble(beforeChestText.getText().toString());
-        beforeWaist = Double.parseDouble(beforeWaistText.getText().toString());
-        beforeHip = Double.parseDouble(beforeHipText.getText().toString());
-        beforeFat = Double.parseDouble(beforeFatText.getText().toString());
-        beforeMuscle = Double.parseDouble(beforeMuscleText.getText().toString());
+        beforeWeightText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                beforeWeight = Double.parseDouble(beforeWeightText.getText().toString());
+            }
+        });
+
+        beforeChestText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                beforeChest =  Double.parseDouble(beforeChestText.getText().toString());
+            }
+        });
+
+        beforeWaistText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                beforeWaist = Double.parseDouble(beforeWaistText.getText().toString());
+            }
+        });
+
+        beforeHipText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                beforeHip = Double.parseDouble(beforeHipText.getText().toString());
+            }
+        });
+
+        beforeFatText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                beforeFat = Double.parseDouble(beforeFatText.getText().toString());
+            }
+        });
+
+        beforeMuscleText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                beforeMuscle = Double.parseDouble(beforeMuscleText.getText().toString());
+            }
+        });
+
+
 
         //afterImage Loading
         afterImageView.setImageDrawable(getResources().getDrawable(R.drawable.common_full_open_on_phone));
@@ -120,7 +230,9 @@ public class BeforeAndAfterFragment extends Fragment {
         afterFatText.setText(afterFat.toString());
         afterMuscleText.setText(afterMuscle.toString());
 
-
+        Context context;
+        context = container.getContext();
+        Toast.makeText(context,"BeforeAndAfterFragment",Toast.LENGTH_LONG).show();
 
 
         return root;

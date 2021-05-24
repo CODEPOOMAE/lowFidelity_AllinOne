@@ -6,15 +6,15 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.threeten.bp.DayOfWeek;
@@ -24,6 +24,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.Executors;
 
+import coms.example.allinonelowfiproject.ExerciseDiary.Today.TodayFragment;
 import coms.example.allinonelowfiproject.dashboard.DashboardRecyclerViewAdapter;
 import coms.example.allinonelowfiproject.decorators.EventDecorator;
 import coms.example.allinonelowfiproject.decorators.OneDayDecorator;
@@ -37,7 +38,7 @@ import coms.example.allinonelowfiproject.objects.DashItem;
 import coms.example.allinonelowfiproject.slidingRootNav.SlidingRootNavBuilder;
 
 public class MainActivity extends AppCompatActivity {
-
+    private Context context;
     RecyclerView dashRecyclerView;
     DashboardRecyclerViewAdapter dashRecyclerAdapter;
     GridLayoutManager dashLayoutManager;
@@ -60,20 +61,32 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setTitleTextColor(Color.WHITE);
 
         Button button = findViewById(R.id.HKB_btn);
-        /*button.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO : click event
-                Intent newIntent = new Intent(getApplicationContext(),HouseKeepingBook.class);
-                startActivity(newIntent);
-            }
-        });*/
+        TextView dashT = findViewById(R.id.main_dashboard_t);
         setSupportActionBar(toolbar);
 
         new SlidingRootNavBuilder(this)
                 .withMenuLayout(R.layout.main_sliding_menu)
                 .withToolbarMenuToggle(toolbar)
                 .inject();
+
+//        button.setOnClickListener(new Button.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                // TODO : click event()
+//                Toast.makeText(context,"버튼 클릭",Toast.LENGTH_LONG);
+////                Intent newIntent = new Intent(getApplicationContext(), ExerciseDiaryMainActivity.class);
+////                startActivity(newIntent);
+//            }
+//        });
+        dashT.setOnClickListener(new TextView.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO : click event()
+//                Toast.makeText(context,"버튼 클릭",Toast.LENGTH_LONG);
+                Intent newIntent = new Intent(getApplicationContext(), ExerciseDiaryMainActivity.class);
+                startActivity(newIntent);
+            }
+        });
 
         dashRecyclerView = (RecyclerView)findViewById(R.id.main_dashboard_recycler);
         dashRecyclerAdapter = new DashboardRecyclerViewAdapter(getApplicationContext(), list);
@@ -137,7 +150,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void onButtonClick(View view){
-        Intent newIntent = new Intent(getApplicationContext(),HouseKeepingBook.class);
+        Intent newIntent = new Intent(getApplicationContext(), ExerciseDiaryMainActivity.class);
+       // Intent newIntent = new Intent(getApplicationContext(),HouseKeepingBook.class);
         startActivity(newIntent);
     }
     private class ApiSimulator extends AsyncTask<Void, Void, List<CalendarDay>> {
