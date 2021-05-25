@@ -25,6 +25,19 @@ public class Fragment_Statistics extends Fragment {
         graph_btn = (Button)view.findViewById(R.id.btn_graph);
         type_btn = (Button)view.findViewById(R.id.btn_type);
 
+        graph_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        type_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         //return inflater.inflate(R.layout.fragment_statics, container,false);
         return view;
     }
