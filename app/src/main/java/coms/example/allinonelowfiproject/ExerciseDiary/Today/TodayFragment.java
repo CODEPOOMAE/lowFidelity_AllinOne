@@ -10,6 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,12 +53,12 @@ public class TodayFragment extends Fragment {
     private Button fatBtn;
     private Button muscleBtn;
 
-    private Double todayWeight;
-    private Double todayWaist;
-    private Double todayChest;
-    private Double todayHip;
-    private Double todayFat;
-    private Double todayMuscle;
+    private Double todayWeight=0.0;
+    private Double todayWaist=0.0;
+    private Double todayChest=0.0;
+    private Double todayHip=0.0;
+    private Double todayFat=0.0;
+    private Double todayMuscle=0.0;
 
 
     private TextView textWater;
@@ -132,56 +134,177 @@ public class TodayFragment extends Fragment {
 //            }
 //        });
 //
-//        //Button and Set Record Text
-//        weightBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                textValue.setText("WEIGHT");
-//                todayWeight = Double.parseDouble(textValueNum.getText().toString());
-//                textValueUnit.setText("KG");
-//            }
-//        });
-//        waistBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                textValue.setText("Waist");
-//                todayWaist = Double.parseDouble(textValueNum.getText().toString());
-//                textValueUnit.setText("mm");
-//            }
-//        });
-//        chestBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                textValue.setText("Chest");
-//                todayChest = Double.parseDouble(textValueNum.getText().toString());
-//                textValueUnit.setText("mm");
-//            }
-//        });
-//        hipBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                textValue.setText("Hip");
-//                todayHip = Double.parseDouble(textValueNum.getText().toString());
-//                textValueUnit.setText("mm");
-//            }
-//        });
-//        fatBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                textValue.setText("Fat");
-//                todayFat = Double.parseDouble(textValueNum.getText().toString());
-//                textValueUnit.setText("%");
-//            }
-//        });
-//        muscleBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                textValue.setText("Muscle");
-//                todayMuscle = Double.parseDouble(textValueNum.getText().toString());
-//                textValueUnit.setText("%");
-//            }
-//        });
-//
+        //Button and Set Record Text
+        weightBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textValue.setText("WEIGHT");
+                textValueUnit.setText("KG");
+                if(todayWeight==0.0) {
+                    textValueNum.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                        }
+
+                        @Override
+                        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable s) {
+                            todayWeight = Double.parseDouble(textValueNum.getText().toString());
+                        }
+                    });
+                }
+                else
+                    textValueNum.setText(todayWeight.toString());
+            }
+        });
+        waistBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textValue.setText("Waist");
+                textValueUnit.setText("mm");
+                if(todayWaist==0.0) {
+                    textValueNum.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                        }
+
+                        @Override
+                        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable s) {
+                            todayWaist = Double.parseDouble(textValueNum.getText().toString());
+                        }
+                    });
+                }
+                else
+                {
+                    textValueNum.setText(todayWaist.toString());
+                }
+            }
+        });
+        chestBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textValue.setText("Chest");
+                textValueUnit.setText("mm");
+                if(todayChest==0.0) {
+                    textValueNum.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                        }
+
+                        @Override
+                        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable s) {
+                            todayChest = Double.parseDouble(textValueNum.getText().toString());
+                        }
+                    });
+                }
+                else
+                {
+                    textValueNum.setText(todayChest.toString());
+                }
+            }
+        });
+        hipBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textValue.setText("Hip");
+                textValueUnit.setText("mm");
+                if(todayHip==0.0) {
+                    textValueNum.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                        }
+
+                        @Override
+                        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable s) {
+                            todayHip = Double.parseDouble(textValueNum.getText().toString());
+                        }
+                    });
+                }
+                else
+                {
+                    textValueNum.setText(todayHip.toString());
+                }
+            }
+        });
+        fatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textValue.setText("Fat");
+                textValueUnit.setText("%");
+                if(todayFat==0.0) {
+                    textValueNum.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                        }
+
+                        @Override
+                        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable s) {
+                            todayFat = Double.parseDouble(textValueNum.getText().toString());
+                        }
+                    });
+                }else{
+                    textValueNum.setText(todayFat.toString());
+                }
+            }
+        });
+        muscleBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textValue.setText("Muscle");
+                textValueUnit.setText("%");
+                if(todayMuscle==0.0) {
+                    textValueNum.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                        }
+
+                        @Override
+                        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable s) {
+                            todayMuscle = Double.parseDouble(textValueNum.getText().toString());
+                        }
+                    });
+                }else
+                {
+                    textValueNum.setText(todayMuscle.toString());
+                }
+            }
+        });
+
 //        //Set Water Rate
 
         Context context;
