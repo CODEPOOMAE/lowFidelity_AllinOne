@@ -78,15 +78,15 @@ public class MainActivity extends AppCompatActivity {
 ////                startActivity(newIntent);
 //            }
 //        });
-        dashT.setOnClickListener(new TextView.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO : click event()
-//                Toast.makeText(context,"버튼 클릭",Toast.LENGTH_LONG);
-                Intent newIntent = new Intent(getApplicationContext(), ExerciseDiaryMainActivity.class);
-                startActivity(newIntent);
-            }
-        });
+//        dashT.setOnClickListener(new TextView.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                // TODO : click event()
+////                Toast.makeText(context,"버튼 클릭",Toast.LENGTH_LONG);
+//                Intent newIntent = new Intent(getApplicationContext(), ExerciseDiaryMainActivity.class);
+//                startActivity(newIntent);
+//            }
+//        });
 
         dashRecyclerView = (RecyclerView)findViewById(R.id.main_dashboard_recycler);
         dashRecyclerAdapter = new DashboardRecyclerViewAdapter(getApplicationContext(), list);
@@ -150,8 +150,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void onButtonClick(View view){
-        Intent newIntent = new Intent(getApplicationContext(), ExerciseDiaryMainActivity.class);
-       // Intent newIntent = new Intent(getApplicationContext(),HouseKeepingBook.class);
+        //Intent newIntent = new Intent(getApplicationContext(), ExerciseDiaryMainActivity.class);
+        Intent newIntent = new Intent(getApplicationContext(),HouseKeepingBook.class);
         startActivity(newIntent);
     }
     private class ApiSimulator extends AsyncTask<Void, Void, List<CalendarDay>> {
