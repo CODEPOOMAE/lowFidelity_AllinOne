@@ -13,8 +13,7 @@ import androidx.fragment.app.Fragment;
 
 public class Fragment_Expense extends Fragment {
     private Button day_btn, week_btn, month_btn;
-
-
+    int day_plus, day_minus, day_sum;
 
     public Fragment_Expense(){
 
@@ -33,6 +32,13 @@ public class Fragment_Expense extends Fragment {
             @Override
             public void onClick(View v){
                 Toast.makeText(getActivity(),"Day_data",Toast.LENGTH_SHORT).show();
+                day_sum = day_minus+day_plus;
+                if(day_sum < 0){
+                    //파란색
+                }
+                if(day_sum > 0){
+                    //빨간색
+                }
             }
         });
         week_btn.setOnClickListener(new View.OnClickListener(){
