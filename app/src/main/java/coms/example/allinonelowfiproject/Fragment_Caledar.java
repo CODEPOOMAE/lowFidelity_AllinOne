@@ -1,5 +1,6 @@
 package coms.example.allinonelowfiproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -50,6 +51,13 @@ public class Fragment_Caledar extends Fragment {
                 materialCalendarView.clearSelection();
 
                 Toast.makeText(getActivity(), shot_Day , Toast.LENGTH_SHORT).show();
+
+                int plus = date.getDay();
+                int minus = date.getMonth();
+                int sum = plus-minus;
+
+                String sum_of_test = sum+ "."; //good result
+                Toast.makeText(getActivity(), sum_of_test , Toast.LENGTH_SHORT).show();
             }
         });
         return view;
